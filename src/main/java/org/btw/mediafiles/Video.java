@@ -1,7 +1,6 @@
 package org.btw.mediafiles;
 
 public class Video extends Media{
-    double duration;
     public Video(int cameraId, int iso, double aperture, int mediaId) {
         super(cameraId, iso, aperture, mediaId);
     }
