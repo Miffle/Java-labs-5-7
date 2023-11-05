@@ -1,9 +1,12 @@
 package org.btw.cameras;
 
 public class WebCamera extends Camera{
-    int lastMediaFileId;
+    private int lastMediaFileId;
+    private String outputConnector; //A C
+
+
     public WebCamera(double aperture, String shootingMode, int iso) {
-        super(aperture, shootingMode, iso);
+        super(aperture, shootingMode, iso, "WebCamera");
     }
 
     @Override
