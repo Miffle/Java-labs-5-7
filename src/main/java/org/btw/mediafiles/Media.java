@@ -1,10 +1,10 @@
 package org.btw.mediafiles;
 
 public abstract class Media {
-    double aperture; // Диафрагма
-    int iso;
-    int cameraId;
-    int id;
+    protected double aperture; // Диафрагма
+    protected int iso;
+    protected int cameraId;
+    protected int id;
 
 
     public Media(int cameraId, int iso, double aperture, int mediaId) {
@@ -13,4 +13,5 @@ public abstract class Media {
         this.iso = iso;
         this.id = mediaId;
     }
+    public abstract void show();
 }

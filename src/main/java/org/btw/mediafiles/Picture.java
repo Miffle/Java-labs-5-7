@@ -5,10 +5,17 @@ public class Picture extends Media {
         super(cameraId, iso, aperture, mediaId);
     }
 
-    public void showPicture() {
-        System.out.println("Camera = " + cameraId);
-        System.out.println("Picture id = " + this.id);
-        System.out.println("Picture iso = " + this.iso);
-        System.out.println("Picture aperture = " + this.aperture + "\n");
+    @Override
+    public void show() {
+        System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Фото " + id + "\n" +
+                "Диафрагма = " + aperture +
+                ", iso = " + iso +
+                ", Камера = " + cameraId +
+                '\n';
     }
 }

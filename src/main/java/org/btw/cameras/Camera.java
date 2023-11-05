@@ -1,65 +1,88 @@
 package org.btw.cameras;
 
+import org.btw.mediafiles.MediaFileType;
+import org.btw.mediafiles.Media;
 import org.btw.mediafiles.Picture;
 import org.btw.mediafiles.Video;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class Camera {
-    static int lastId;
-    int mediaId;
-    int id;
-    String shootingMode;
-    ArrayList<Picture> allPhotos = new ArrayList<>();
-    ArrayList<Video> allVideos = new ArrayList<>();
-    int iso;
-    double aperture; // Диафрагма
+    protected static int lastId;
+    protected int mediaId;
+    protected int id;
+    protected String shootingMode;
+    protected List<Media> allMedia = new ArrayList<>();
+    protected int iso;
+    protected String type;
+    protected double aperture; // Диафрагма
 
-    public Camera(double aperture, String shootingMode, int iso) {
+    public Camera(double aperture, String shootingMode, int iso, String type) {
         changeShootingMode(shootingMode);
         this.aperture = aperture;
         this.iso = iso;
         this.id = makeIdForNewCamera();
+        this.type = type;
     }
 
+    /**
+     * Генерирует ID для новой камеры
+     *
+     * @return id
+     */
     private int makeIdForNewCamera() {
         return ++lastId;
     }
 
+    /**
+     * Меняет значение shootingMode на введенное пользователем
+     *
+     * @param newShootingMode photo/video
+     */
     public void changeShootingMode(String newShootingMode) {
         this.shootingMode = newShootingMode;
     }
 
+    /**
+     * Меняет значение shootingMode основываясь на предыдущем значении.
+     */
     public void toggleChangeShootingMode() {
-        if (Objects.equals(this.shootingMode, "photo")) {
-            this.shootingMode = "video";
-        } else this.shootingMode = "photo";
+        if (Objects.equals(this.shootingMode, MediaFileType.getPHOTO())) {
+            this.shootingMode = MediaFileType.getVIDEO();
+        } else this.shootingMode = MediaFileType.getPHOTO();
         System.out.println("Режим съёмки был изменен.");
     }
 
-    public void takePicture() {
-        if (Objects.equals(this.shootingMode, "photo")) {
+    /**
+     * Создаёт новый медиафайл, в зависимости от переданного типа.
+     *
+     * @param mediaFileType тип создаваемого медиафайла - photo или video
+     */
+    public void createNewMediaFile(String mediaFileType) {
+        if (Objects.equals(mediaFileType, this.shootingMode)) {
             this.mediaId = this.makeIdForNewMediaFile();
-            allPhotos.add(new Picture(id, iso, aperture, mediaId));
-            System.out.println("Фото сделано");
-        } else {
-            returnException();
-        }
+            addNewMediaFileToList(mediaFileType);
+        } else returnException();
     }
 
-    public void takeVideo() {
-        if (Objects.equals(this.shootingMode, "video")) {
-            this.mediaId = this.makeIdForNewMediaFile();
-            allVideos.add(new Video(id, iso, aperture, mediaId));
-            System.out.println("Видео снято");
+    /**
+     * Выбирает тип медиафайла и добавляет в массив
+     *
+     * @param mediaFileType тип создаваемого медиафайла - photo или video
+     */
+    private void addNewMediaFileToList(String mediaFileType) {
+        if (Objects.equals(mediaFileType, MediaFileType.getPHOTO())) {
+            allMedia.add(new Picture(id, iso, aperture, mediaId));
         } else {
-            returnException();
+            allMedia.add(new Video(id, iso, aperture, mediaId));
         }
+        System.out.println("Готово!");
     }
 
     private static void returnException() {
-        System.out.println("You need to change shooting mode");
+        System.out.println("Нужно поменять режим съемки");
     }
 
     public void changeAperture(double aperture) {
@@ -70,27 +93,27 @@ public abstract class Camera {
         this.iso = iso;
     }
 
-    public void showAllPhotos() {
-        for (Picture pic :
-                allPhotos) {
-            pic.showPicture();
-        }
-    }
-
-    public void showAllVideos() {
-        for (Video vid :
-                allVideos) {
-            vid.showVideo();
-        }
-    }
-
     public void showAllMedia() {
-        showAllPhotos();
-        showAllVideos();
+        for (Media media :
+                allMedia) {
+            media.show();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return type + " " + id +
+                "\n\tРежим съемки = '" + shootingMode + '\'' +
+                "\n\tiso = " + iso +
+                "\n\tДиафрагма = " + aperture;
     }
 
     public void getCamera() {
-        System.out.println(this.id);
+        System.out.println(this);
+    }
+
+    public int getId() {
+        return id;
     }
 
     protected abstract int makeIdForNewMediaFile();
