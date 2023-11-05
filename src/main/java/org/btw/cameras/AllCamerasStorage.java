@@ -1,6 +1,4 @@
-package org.btw.mediafiles;
-
-import org.btw.cameras.Camera;
+package org.btw.cameras;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,15 +1,19 @@
 package org.btw.cameras;
 
+import org.btw.Main;
 import org.btw.mediafiles.MediaFileType;
 import org.btw.mediafiles.Media;
 import org.btw.mediafiles.Picture;
 import org.btw.mediafiles.Video;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public abstract class Camera {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
     protected static int lastId;
     protected int mediaId;
     protected int id;
@@ -25,6 +29,7 @@ public abstract class Camera {
         this.iso = iso;
         this.id = makeIdForNewCamera();
         this.type = type;
+        logger.info("Создана новая " + type + " камера");
     }
 
     /**
@@ -43,6 +48,7 @@ public abstract class Camera {
      */
     public void changeShootingMode(String newShootingMode) {
         this.shootingMode = newShootingMode;
+        logger.info("начальным режимом съемки выбран "+ newShootingMode);
     }
 
     /**
@@ -53,6 +59,7 @@ public abstract class Camera {
             this.shootingMode = MediaFileType.getVIDEO();
         } else this.shootingMode = MediaFileType.getPHOTO();
         System.out.println("Режим съёмки был изменен.");
+        logger.info("Режим съемки у " + this.type + " " + this.id + " был изменен на " + this.shootingMode);
     }
 
     /**
@@ -78,19 +85,23 @@ public abstract class Camera {
         } else {
             allMedia.add(new Video(id, iso, aperture, mediaId));
         }
+        logger.info("У " + this.type + " " + this.id + " был добавлен медиафайл типа: " + mediaFileType);
         System.out.println("Готово!");
     }
 
     private static void returnException() {
         System.out.println("Нужно поменять режим съемки");
+        logger.error("Ошибка создания медиафайла из-за несовпадения типа и режима съемки");
     }
 
     public void changeAperture(double aperture) {
         this.aperture = aperture;
+        logger.info("У " + this.type + " "+ this.id + " была изменена диафрагма на " + this.aperture);
     }
 
     public void changeISO(int iso) {
         this.iso = iso;
+        logger.info("У " + this.type + " "+ this.id + " было изменено ISO на " + this.iso);
     }
 
     public void showAllMedia() {
