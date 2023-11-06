@@ -6,7 +6,7 @@ public class WebCamera extends Camera{
 
 
     public WebCamera(double aperture, String shootingMode, int iso) {
-        super(aperture, shootingMode, iso, "WebCamera");
+        super(aperture, shootingMode, iso);
     }
 
     @Override

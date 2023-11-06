@@ -20,16 +20,14 @@ public abstract class Camera {
     protected String shootingMode;
     protected List<Media> allMedia = new ArrayList<>();
     protected int iso;
-    protected String type;
     protected double aperture; // Диафрагма
 
-    public Camera(double aperture, String shootingMode, int iso, String type) {
+    public Camera(double aperture, String shootingMode, int iso) {
         changeShootingMode(shootingMode);
         this.aperture = aperture;
         this.iso = iso;
         this.id = makeIdForNewCamera();
-        this.type = type;
-        logger.info("Создана новая " + type + " камера");
+        logger.info("Создана новая " + getClass().getSimpleName() + " камера");
     }
 
     /**
@@ -48,18 +46,18 @@ public abstract class Camera {
      */
     public void changeShootingMode(String newShootingMode) {
         this.shootingMode = newShootingMode;
-        logger.info("начальным режимом съемки выбран "+ newShootingMode);
+        logger.info("начальным режимом съемки выбран " + newShootingMode);
     }
 
     /**
      * Меняет значение shootingMode основываясь на предыдущем значении.
      */
     public void toggleChangeShootingMode() {
-        if (Objects.equals(this.shootingMode, MediaFileType.getPHOTO())) {
-            this.shootingMode = MediaFileType.getVIDEO();
-        } else this.shootingMode = MediaFileType.getPHOTO();
+        if (Objects.equals(this.shootingMode, MediaFileType.PHOTO)) {
+            this.shootingMode = MediaFileType.VIDEO;
+        } else this.shootingMode = MediaFileType.PHOTO;
         System.out.println("Режим съёмки был изменен.");
-        logger.info("Режим съемки у " + this.type + " " + this.id + " был изменен на " + this.shootingMode);
+        logger.info("Режим съемки у " + getClass().getSimpleName() + " " + this.id + " был изменен на " + this.shootingMode);
     }
 
     /**
@@ -80,12 +78,9 @@ public abstract class Camera {
      * @param mediaFileType тип создаваемого медиафайла - photo или video
      */
     private void addNewMediaFileToList(String mediaFileType) {
-        if (Objects.equals(mediaFileType, MediaFileType.getPHOTO())) {
-            allMedia.add(new Picture(id, iso, aperture, mediaId));
-        } else {
-            allMedia.add(new Video(id, iso, aperture, mediaId));
-        }
-        logger.info("У " + this.type + " " + this.id + " был добавлен медиафайл типа: " + mediaFileType);
+        Media media = Objects.equals(mediaFileType, MediaFileType.PHOTO) ? new Picture(id, iso, aperture, mediaId) : new Video(id, iso, aperture, mediaId);
+        allMedia.add(media);
+        logger.info("У " + getClass().getSimpleName() + " " + this.id + " был добавлен медиафайл типа: " + mediaFileType);
         System.out.println("Готово!");
     }
 
@@ -96,12 +91,12 @@ public abstract class Camera {
 
     public void changeAperture(double aperture) {
         this.aperture = aperture;
-        logger.info("У " + this.type + " "+ this.id + " была изменена диафрагма на " + this.aperture);
+        logger.info("У " + getClass().getSimpleName() + " " + this.id + " была изменена диафрагма на " + this.aperture);
     }
 
     public void changeISO(int iso) {
         this.iso = iso;
-        logger.info("У " + this.type + " "+ this.id + " было изменено ISO на " + this.iso);
+        logger.info("У " + getClass().getSimpleName() + " " + this.id + " было изменено ISO на " + this.iso);
     }
 
     public void showAllMedia() {
@@ -113,7 +108,7 @@ public abstract class Camera {
 
     @Override
     public String toString() {
-        return type + " " + id +
+        return getClass().getSimpleName() + " " + id +
                 "\n\tРежим съемки = '" + shootingMode + '\'' +
                 "\n\tiso = " + iso +
                 "\n\tДиафрагма = " + aperture;

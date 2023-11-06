@@ -31,11 +31,11 @@ public class CameraFunctionsMenu {
                 switch (choice) {
                     case 1 -> {
                         logger.info("Выбран пункт создания фото");
-                        camera.createNewMediaFile(MediaFileType.getPHOTO());
+                        camera.createNewMediaFile(MediaFileType.PHOTO);
                     }
                     case 2 -> {
                         logger.info("Выбран пункт создания видео");
-                        camera.createNewMediaFile(MediaFileType.getVIDEO());
+                        camera.createNewMediaFile(MediaFileType.VIDEO);
                     }
                     case 3 -> {
                         logger.info("Выбран пункт автоматической смены режима съемки");

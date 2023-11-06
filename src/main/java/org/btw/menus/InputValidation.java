@@ -70,7 +70,7 @@ public class InputValidation {
         while (!accept) {
             Scanner scanner = makeScanner();
             result = scanner.nextLine();
-            if (Objects.equals(result, MediaFileType.getPHOTO()) | Objects.equals(result, MediaFileType.getVIDEO())) {
+            if (Objects.equals(result, MediaFileType.PHOTO) | Objects.equals(result, MediaFileType.VIDEO)) {
                 accept = true;
             } else {
                 logger.error("Ошибка ввода режима съемки");
