@@ -1,19 +1,24 @@
 package org.btw.menus;
 
+import org.btw.Main;
 import org.btw.cameras.PhoneCamera;
 import org.btw.cameras.SlrCamera;
 import org.btw.cameras.WebCamera;
-import org.btw.mediafiles.AllCamerasStorage;
+import org.btw.cameras.AllCamerasStorage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CameraCreationMenu {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     /**
      * Функция, отвечающая за создание новой камеры в базе.
      */
     public static void cameraChoice() {
         cameraChoiceMenu();
-        int cameraChoice = InputValidation.inputInt();
         boolean exit = false;
         while (!exit) {
+            int cameraChoice = InputValidation.inputInt();
             exit = cameraChoiceSwitch(cameraChoice, exit);
         }
     }
@@ -41,10 +46,15 @@ public class CameraCreationMenu {
                 exit = true;
             }
             case 4 -> {
+                logger.info("Выход из процесса создания камеры");
                 System.out.println("Ладно, не буду создавать");
                 exit = true;
             }
-            default -> System.out.println("Я не знаю такую команду, давай заново.");
+            default -> {
+                 logger.warn("Неправильно введено число при выборе создаваемой камеры");
+                System.out.println("Я не знаю такую команду, давай заново.");
+
+            }
         }
         return exit;
     }

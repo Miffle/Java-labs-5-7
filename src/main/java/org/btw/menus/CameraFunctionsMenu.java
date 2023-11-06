@@ -1,10 +1,15 @@
 package org.btw.menus;
 
+import org.btw.Main;
 import org.btw.cameras.Camera;
-import org.btw.mediafiles.AllCamerasStorage;
+import org.btw.cameras.AllCamerasStorage;
 import org.btw.mediafiles.MediaFileType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CameraFunctionsMenu {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     /**
      * Функция, отвечающая за пятый кейс.
      * Даёт возможность:
@@ -24,12 +29,30 @@ public class CameraFunctionsMenu {
                 functionsChoiceMenu();
                 int choice = InputValidation.inputInt();
                 switch (choice) {
-                    case 1 -> camera.createNewMediaFile(MediaFileType.getPHOTO());
-                    case 2 -> camera.createNewMediaFile(MediaFileType.getVIDEO());
-                    case 3 -> camera.toggleChangeShootingMode();
-                    case 4 -> camera.showAllMedia();
-                    case 5 -> exit = true;
-                    default -> throw new IllegalStateException("Не знаю такую команду: " + choice);
+                    case 1 -> {
+                        logger.info("Выбран пункт создания фото");
+                        camera.createNewMediaFile(MediaFileType.getPHOTO());
+                    }
+                    case 2 -> {
+                        logger.info("Выбран пункт создания видео");
+                        camera.createNewMediaFile(MediaFileType.getVIDEO());
+                    }
+                    case 3 -> {
+                        logger.info("Выбран пункт автоматической смены режима съемки");
+                        camera.toggleChangeShootingMode();
+                    }
+                    case 4 -> {
+                        logger.info("Выбран пункт вывода всех медиафайлов на экран");
+                        camera.showAllMedia();
+                    }
+                    case 5 -> {
+                        logger.info("Выход из меню взаимодействия с камерой");
+                        exit = true;
+                    }
+                    default -> {
+                        logger.warn("Неправильно введено число при выборе действия для взаимодействия с камерой");
+                        System.out.println("Не знаю такую команду");
+                    }
                 }
             }
         }

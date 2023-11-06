@@ -1,8 +1,12 @@
 package org.btw.menus;
 
-import org.btw.mediafiles.AllCamerasStorage;
+import org.btw.Main;
+import org.btw.cameras.AllCamerasStorage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CameraFeaturesMenu {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
     /**
      * Функция, отвечающая за изменение свойств камеры
      */
@@ -49,9 +53,13 @@ public class CameraFeaturesMenu {
             }
             case 4 -> {
                 System.out.println("Ну ладно, выходим");
+                logger.info("Выход из меню изменения свойств камеры");
                 exit = true;
             }
-            default -> System.out.println("Не знаю такого свойства");
+            default -> {
+                logger.warn("Неправильно введено число при выборе действия в изменении свойств камеры");
+                System.out.println("Не знаю такого свойства");
+            }
         }
         return exit;
 

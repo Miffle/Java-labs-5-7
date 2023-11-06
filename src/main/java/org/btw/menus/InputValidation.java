@@ -1,8 +1,11 @@
 package org.btw.menus;
 
+import org.btw.Main;
 import org.btw.cameras.Camera;
-import org.btw.mediafiles.AllCamerasStorage;
+import org.btw.cameras.AllCamerasStorage;
 import org.btw.mediafiles.MediaFileType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.InputMismatchException;
 import java.util.Objects;
@@ -12,6 +15,7 @@ public class InputValidation {
     private static Scanner makeScanner() {
         return new Scanner(System.in);
     }
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     /**
      * Функция, с помощью цикла принимает только int значение.
@@ -27,6 +31,7 @@ public class InputValidation {
                 result = scanner.nextInt();
                 accept = true;
             } catch (InputMismatchException e) {
+                logger.error("Ошибка ввода целого числа");
                 System.out.println("Ошибка ввода. Пожалуйста, введите целое число.");
             }
         }
@@ -47,6 +52,7 @@ public class InputValidation {
                 result = scanner.nextDouble();
                 accept = true;
             } catch (InputMismatchException e) {
+                logger.error("Ошибка ввода double числа");
                 System.out.println("Ошибка ввода. Пожалуйста, введите double число.");
             }
         }
@@ -67,6 +73,7 @@ public class InputValidation {
             if (Objects.equals(result, MediaFileType.getPHOTO()) | Objects.equals(result, MediaFileType.getVIDEO())) {
                 accept = true;
             } else {
+                logger.error("Ошибка ввода режима съемки");
                 System.out.println("Ошибка ввода. Пожалуйста, введите photo или video.");
             }
         }
@@ -77,9 +84,12 @@ public class InputValidation {
         int input = 0;
         while (!exit){
             input = inputInt();
-            if (0<input && input<1000){
+            if (0<input && input<10000){
                 exit = true;
-            }else System.out.println("Странное значение, давай более правдоподобное.");
+            }else {
+                logger.error("Введено неправильное значение ISO");
+                System.out.println("Странное значение, давай более правдоподобное.");
+            }
         }
         return input;
     }
@@ -91,7 +101,10 @@ public class InputValidation {
             if (1<input && input<=16){
                 exit = true;
             }
-            else System.out.println("Странное значение, давай более правдоподобное.");
+            else {
+                logger.error("Введено неправильное значение диафрагмы");
+                System.out.println("Странное значение, давай более правдоподобное.");
+            }
         }
         return input;
     }
@@ -110,6 +123,7 @@ public class InputValidation {
                 return true;
             }
         }
+        logger.error("Введен несуществующий ID камеры");
         return false;
     }
 
