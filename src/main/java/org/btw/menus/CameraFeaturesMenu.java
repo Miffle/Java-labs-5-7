@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CameraFeaturesMenu {
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final Logger logger = LoggerFactory.getLogger(CameraFeaturesMenu.class);
     /**
      * Функция, отвечающая за изменение свойств камеры
      */

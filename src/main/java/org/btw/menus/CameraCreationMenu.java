@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CameraCreationMenu {
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final Logger logger = LoggerFactory.getLogger(CameraCreationMenu.class);
 
     /**
      * Функция, отвечающая за создание новой камеры в базе.

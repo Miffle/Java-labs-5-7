@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MainMenu {
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final Logger logger = LoggerFactory.getLogger(MainMenu.class);
     static final String menu = """
             Это меню, что будем делать?
             1) Добавим новую камеру в базу.

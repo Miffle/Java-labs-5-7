@@ -15,7 +15,7 @@ public class InputValidation {
     private static Scanner makeScanner() {
         return new Scanner(System.in);
     }
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final Logger logger = LoggerFactory.getLogger(InputValidation.class);
 
     /**
      * Функция, с помощью цикла принимает только int значение.
