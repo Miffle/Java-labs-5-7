@@ -1,6 +1,7 @@
 package org.btw.cameras;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AllCamerasStorage {
@@ -12,11 +13,11 @@ public class AllCamerasStorage {
     public static void getAllCameras() {
         for (Camera cam :
                 AllCamerasStorage.allCameras) {
-            cam.getCamera();
+            System.out.println(cam);
         }
     }
     public static List<Camera> getAllCamerasArray(){
-        return allCameras;
+        return Collections.unmodifiableList(allCameras);
     }
     public static void add(Camera camera) {
         allCameras.add(camera);

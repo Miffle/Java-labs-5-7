@@ -1,13 +1,13 @@
 package org.btw.menus;
 
-import org.btw.Main;
-import org.btw.cameras.Camera;
 import org.btw.cameras.AllCamerasStorage;
+import org.btw.cameras.Camera;
 import org.btw.mediafiles.MediaFileType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -15,6 +15,7 @@ public class InputValidation {
     private static Scanner makeScanner() {
         return new Scanner(System.in);
     }
+
     private static final Logger logger = LoggerFactory.getLogger(InputValidation.class);
 
     /**
@@ -79,29 +80,30 @@ public class InputValidation {
         }
         return result;
     }
-    public static int isoInputValidation(){
+
+    public static int isoInputValidation() {
         boolean exit = false;
         int input = 0;
-        while (!exit){
+        while (!exit) {
             input = inputInt();
-            if (0<input && input<10000){
+            if (0 < input && input < 10000) {
                 exit = true;
-            }else {
+            } else {
                 logger.error("Введено неправильное значение ISO");
                 System.out.println("Странное значение, давай более правдоподобное.");
             }
         }
         return input;
     }
-    public static double apertureInputValidation(){
+
+    public static double apertureInputValidation() {
         boolean exit = false;
         double input = 0;
-        while (!exit){
+        while (!exit) {
             input = inputDouble();
-            if (1<input && input<=16){
+            if (1 < input && input <= 16) {
                 exit = true;
-            }
-            else {
+            } else {
                 logger.error("Введено неправильное значение диафрагмы");
                 System.out.println("Странное значение, давай более правдоподобное.");
             }
@@ -117,14 +119,12 @@ public class InputValidation {
      * @return true/false
      */
     public static boolean cameraIdCheck(int id) {
-        for (Camera camera :
-                AllCamerasStorage.getAllCamerasArray()) {
-            if (AllCamerasStorage.getAllCamerasArray().size() >= id && camera.getId() == id) {
-                return true;
-            }
+        List<Camera> cameras = AllCamerasStorage.getAllCamerasArray();
+        if (cameras.size() < id) {
+            logger.error("Введен несуществующий ID камеры");
+            return false;
         }
-        logger.error("Введен несуществующий ID камеры");
-        return false;
+        return cameras.stream().anyMatch(camera -> camera.getId() == id);
     }
 
 }

@@ -1,12 +1,11 @@
 package cameras;
 
-import org.apache.log4j.PropertyConfigurator;
 import org.btw.cameras.AllCamerasStorage;
 import org.btw.cameras.Camera;
 import org.btw.cameras.SlrCamera;
-import org.junit.jupiter.api.*;
-
-import java.util.List;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class AllCamerasStorageTest {
     private final Camera testCamera = new SlrCamera(2.8, "video", 1000);

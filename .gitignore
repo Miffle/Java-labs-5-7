@@ -37,4 +37,3 @@ build/
 ### Mac OS ###
 .DS_Store
 logging.log
-src/main/java/org/btw/log4j.properties

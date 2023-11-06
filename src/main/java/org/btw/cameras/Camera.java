@@ -1,8 +1,7 @@
 package org.btw.cameras;
 
-import org.btw.Main;
-import org.btw.mediafiles.MediaFileType;
 import org.btw.mediafiles.Media;
+import org.btw.mediafiles.MediaFileType;
 import org.btw.mediafiles.Picture;
 import org.btw.mediafiles.Video;
 import org.slf4j.Logger;
@@ -114,9 +113,6 @@ public abstract class Camera {
                 "\n\tДиафрагма = " + aperture;
     }
 
-    public void getCamera() {
-        System.out.println(this);
-    }
 
     public int getId() {
         return id;
