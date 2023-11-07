@@ -1,6 +1,5 @@
 package org.btw.menus;
 
-import org.btw.Main;
 import org.btw.cameras.AllCamerasStorage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
