@@ -1,11 +1,6 @@
-package org.btw.menus;
+package org.btw.menus_handlers;
 
 public class CameraFeaturesInput {
-    public static int getCameraId(String x) {
-        System.out.println(x);
-        return InputValidation.inputInt();
-    }
-
     public static int getIsoForCameras() {
         System.out.println("Введи целое число для значения ISO");
         return InputValidation.isoInputValidation();

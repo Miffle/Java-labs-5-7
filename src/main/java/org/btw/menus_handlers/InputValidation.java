@@ -1,4 +1,4 @@
-package org.btw.menus;
+package org.btw.menus_handlers;
 
 import org.btw.cameras.AllCamerasStorage;
 import org.btw.cameras.Camera;
@@ -111,6 +111,11 @@ public class InputValidation {
         return input;
     }
 
+    public static int getCameraId(String x) {
+        System.out.println(x);
+        return InputValidation.inputInt();
+    }
+
     /**
      * <b>ВАЖНО! Передаваемый ID на 1 больше, чем индекс массива, т.е. подсчёт камер начинается с 1.</b>
      * Проверяет введенный пользователем ID камеры на существование такого индекса. <br>
@@ -122,6 +127,7 @@ public class InputValidation {
         List<Camera> cameras = AllCamerasStorage.getAllCamerasArray();
         if (cameras.size() < id) {
             logger.error("Введен несуществующий ID камеры");
+            System.out.println("Нет камеры с таким id");
             return false;
         }
         return cameras.stream().anyMatch(camera -> camera.getId() == id);
