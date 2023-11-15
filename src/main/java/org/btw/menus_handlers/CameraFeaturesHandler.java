@@ -3,8 +3,6 @@ package org.btw.menus_handlers;
 import org.btw.cameras.AllCamerasStorage;
 import org.btw.menus.ChangeFeaturesMenu;
 import org.btw.menus.Menu;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class CameraFeaturesHandler {
 
