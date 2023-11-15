@@ -16,4 +16,50 @@ public class CameraFeaturesInput {
         return InputValidation.apertureInputValidation();
     }
 
+    public static double inputZoomValue() {
+        System.out.println("Введи значение Zoom.");
+        double value;
+        while (true) {
+            value = InputValidation.inputDouble();
+            if (value < 100 && value >= 0.5) {
+                return value;
+            }
+        }
+    }
+
+    public static int inputModule() {
+        System.out.println("Выбери модуль: \n\t 0) Фронтальная камера \n\t 1) Основная камера");
+        int value;
+        while (true) {
+            value = InputValidation.inputInt();
+            if (value == 0 || value == 1) {
+                return value;
+            }
+        }
+    }
+
+    public static int inputConnector() {
+        System.out.println("""
+                Введи тип коннектора:
+                \t 0) А
+                \t 1) C""");
+        int value;
+        while (true) {
+            value = InputValidation.inputInt();
+            if (value == 0 || value == 1) {
+                return value;
+            }
+        }
+    }
+    public static double inputStorageValue() {
+        System.out.println("Введи размер хранилища.");
+        double value;
+        while (true) {
+            value = InputValidation.inputDouble();
+            if (value <= 1024 && value >= 0.5) {
+                return value;
+            }
+        }
+    }
+
 }

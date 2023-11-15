@@ -24,7 +24,8 @@ public class CameraCreationHandler {
                 new WebCamera(
                         CameraFeaturesInput.getApertureForCameras(),
                         CameraFeaturesInput.getShootingMod(),
-                        CameraFeaturesInput.getIsoForCameras()
+                        CameraFeaturesInput.getIsoForCameras(),
+                        CameraFeaturesInput.inputConnector()
                 )
         );
     }
@@ -34,12 +35,20 @@ public class CameraCreationHandler {
                 new PhoneCamera(
                         CameraFeaturesInput.getApertureForCameras(),
                         CameraFeaturesInput.getShootingMod(),
-                        CameraFeaturesInput.getIsoForCameras()
+                        CameraFeaturesInput.getIsoForCameras(),
+                        CameraFeaturesInput.inputZoomValue(),
+                        CameraFeaturesInput.inputModule()
                 )
         );
     }
 
     public static void addNewSlrCamera() {
-        AllCamerasStorage.add(new SlrCamera(CameraFeaturesInput.getApertureForCameras(), CameraFeaturesInput.getShootingMod(), CameraFeaturesInput.getIsoForCameras()));
+        AllCamerasStorage.add(
+                new SlrCamera(
+                        CameraFeaturesInput.getApertureForCameras(),
+                        CameraFeaturesInput.getShootingMod(),
+                        CameraFeaturesInput.getIsoForCameras(),
+                        CameraFeaturesInput.inputZoomValue(),
+                        CameraFeaturesInput.inputStorageValue()));
     }
 }

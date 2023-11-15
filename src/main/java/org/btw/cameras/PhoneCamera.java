@@ -2,10 +2,8 @@ package org.btw.cameras;
 
 public class PhoneCamera extends Camera {
     private int lastMediaFileId;
-    private boolean macroShootingSupport;
-    private double storage;
-    private double zoom;
-    private int selectedCameraModule;
+    private final double zoom;
+    private final int selectedCameraModule;
 
 
     /**
@@ -13,10 +11,17 @@ public class PhoneCamera extends Camera {
      * @param shootingMode Режим съемки
      * @param iso          исо
      */
-    public PhoneCamera(double aperture, String shootingMode, int iso) {
+    public PhoneCamera(double aperture, String shootingMode, int iso, double zoom, int selectedCameraModule) {
         super(aperture, shootingMode, iso);
+        this.zoom = zoom;
+        this.selectedCameraModule = selectedCameraModule;
     }
-
+    @Override
+    public String toString() {
+        return super.toString() + "\n" +
+                "\tZoom = " + zoom + "\n" +
+                "\tВыбранный модуль камеры = " + selectedCameraModule;
+    }
 
     @Override
     protected int makeIdForNewMediaFile() {

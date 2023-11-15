@@ -3,18 +3,17 @@ package cameras;
 import org.btw.cameras.AllCamerasStorage;
 import org.btw.cameras.Camera;
 import org.btw.cameras.SlrCamera;
+import org.btw.mediafiles.MediaFileType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class AllCamerasStorageTest {
-    private final Camera testCamera = new SlrCamera(2.8, "video", 1000);
+    private final Camera testCamera = new SlrCamera(2.8, MediaFileType.VIDEO, 1000, 5, 100);
 
     @BeforeEach
     void addOneCameraInArray() {
-        for (int i = 0; i < AllCamerasStorage.getAllCamerasArray().size(); i++) {
-            AllCamerasStorage.remove(i);
-        }
+        AllCamerasStorage.clearAll();
         AllCamerasStorage.add(testCamera);
     }
 
