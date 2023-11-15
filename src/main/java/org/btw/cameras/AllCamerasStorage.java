@@ -30,5 +30,7 @@ public class AllCamerasStorage {
     public static Camera get(int id) {
         return allCameras.get(id);
     }
-
+    public static void clearAll(){
+        allCameras.clear();
+    }
 }

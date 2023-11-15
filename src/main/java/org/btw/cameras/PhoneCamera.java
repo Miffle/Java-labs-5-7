@@ -17,6 +17,7 @@ public class PhoneCamera extends Camera {
         super(aperture, shootingMode, iso);
     }
 
+
     @Override
     protected int makeIdForNewMediaFile() {
         return ++lastMediaFileId;

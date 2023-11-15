@@ -7,7 +7,6 @@ import org.btw.cameras.WebCamera;
 import org.btw.menus.CreationMenu;
 
 public class CameraCreationHandler {
-
     /**
      * Функция, отвечающая за создание новой камеры в базе.
      */
@@ -21,11 +20,23 @@ public class CameraCreationHandler {
     }
 
     public static void addNewWebCamera() {
-        AllCamerasStorage.add(new WebCamera(CameraFeaturesInput.getApertureForCameras(), CameraFeaturesInput.getShootingMod(), CameraFeaturesInput.getIsoForCameras()));
+        AllCamerasStorage.add(
+                new WebCamera(
+                        CameraFeaturesInput.getApertureForCameras(),
+                        CameraFeaturesInput.getShootingMod(),
+                        CameraFeaturesInput.getIsoForCameras()
+                )
+        );
     }
 
     public static void addNewPhoneCamera() {
-        AllCamerasStorage.add(new PhoneCamera(CameraFeaturesInput.getApertureForCameras(), CameraFeaturesInput.getShootingMod(), CameraFeaturesInput.getIsoForCameras()));
+        AllCamerasStorage.add(
+                new PhoneCamera(
+                        CameraFeaturesInput.getApertureForCameras(),
+                        CameraFeaturesInput.getShootingMod(),
+                        CameraFeaturesInput.getIsoForCameras()
+                )
+        );
     }
 
     public static void addNewSlrCamera() {
