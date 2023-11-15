@@ -13,6 +13,7 @@ import java.util.Objects;
 
 public abstract class Camera {
     private static final Logger logger = LoggerFactory.getLogger(Camera.class);
+    protected String className = this.getClass().getSimpleName();
     protected static int lastId;
     protected int mediaId;
     protected int id;
