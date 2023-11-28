@@ -5,6 +5,7 @@ import org.btw.cameras.Camera;
 import org.btw.cameras.PhoneCamera;
 import org.btw.cameras.SlrCamera;
 import org.btw.cameras.WebCamera;
+import org.btw.mediafiles.Media;
 
 import java.lang.reflect.Type;
 
@@ -21,5 +22,4 @@ public class CameraAdapter implements JsonDeserializer<Camera> {
             default -> throw new JsonParseException("Unknown camera type: " + className);
         };
     }
-
 }

@@ -5,6 +5,7 @@ public abstract class Media {
     protected int iso;
     protected int cameraId;
     protected int id;
+    protected String mediaFileType;
 
 
     public Media(int cameraId, int iso, double aperture, int mediaId) {
@@ -12,6 +13,7 @@ public abstract class Media {
         this.aperture = aperture;
         this.iso = iso;
         this.id = mediaId;
+        this.mediaFileType = getClass().getSimpleName();
     }
     public abstract void show();
 }

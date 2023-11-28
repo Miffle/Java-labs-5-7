@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.btw.cameras.AllCamerasStorage;
 import org.btw.cameras.Camera;
+import org.btw.mediafiles.Media;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +15,7 @@ public class FromJSONReadHandler {
     public static void readFromJSON() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Camera.class, new CameraAdapter());
+        gsonBuilder.registerTypeAdapter(Media.class, new MediaAdapter());
         Gson gson = gsonBuilder.create();
         try {
             Camera[] cameras = gson.fromJson(new FileReader("result.json"), Camera[].class);

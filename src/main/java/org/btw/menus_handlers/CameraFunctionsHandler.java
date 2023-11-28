@@ -1,6 +1,5 @@
 package org.btw.menus_handlers;
 
-import org.btw.cameras.AllCamerasStorage;
 import org.btw.cameras.Camera;
 import org.btw.mediafiles.MediaFileType;
 import org.btw.menus.ChoiceFunctionsMenu;
@@ -25,26 +24,24 @@ public class CameraFunctionsHandler {
             exit = menu.optionChoice();
         }
     }
-    public static void newPhoto(){
-        final Camera camera = getCamera();
+
+    public static void newPhoto() {
+        final Camera camera = InputValidation.getCamera();
         camera.createNewMediaFile(MediaFileType.PHOTO);
     }
-    public static void newVideo(){
-        final Camera camera = getCamera();
+
+    public static void newVideo() {
+        final Camera camera = InputValidation.getCamera();
         camera.createNewMediaFile(MediaFileType.VIDEO);
     }
-    public static void changeShootingMood(){
-        final Camera camera = getCamera();
+
+    public static void changeShootingMood() {
+        final Camera camera = InputValidation.getCamera();
         camera.toggleChangeShootingMode();
     }
-    public static void showAllMedia(){
-        final Camera camera = getCamera();
+
+    public static void showAllMedia() {
+        final Camera camera = InputValidation.getCamera();
         camera.showAllMedia();
     }
-
-    private static Camera getCamera() {
-        int cameraId = InputValidation.getCameraId("Введите ID камеры, которой попробуем воспользоваться");
-        return AllCamerasStorage.get(cameraId - 1);
-    }
-
 }

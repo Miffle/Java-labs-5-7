@@ -111,6 +111,22 @@ public class InputValidation {
         return input;
     }
 
+    public static Camera getCamera() {
+        while (true) {
+            int cameraId = InputValidation.getCameraId("Введи id камеры");
+            List<Camera> cameras = AllCamerasStorage.getAllCamerasArray();
+            if (cameraIdCheck(cameraId)) {
+                int inArrayCameraId = 0;
+                for (Camera camera : cameras) {
+                    if (camera.getId() == cameraId) {
+                        inArrayCameraId = cameras.indexOf(camera);
+                    }
+                }
+                return AllCamerasStorage.get(inArrayCameraId);
+            }
+        }
+    }
+
     public static int getCameraId(String x) {
         System.out.println(x);
         return InputValidation.inputInt();
@@ -125,12 +141,12 @@ public class InputValidation {
      */
     public static boolean cameraIdCheck(int id) {
         List<Camera> cameras = AllCamerasStorage.getAllCamerasArray();
-        if (cameras.size() < id) {
+        if (cameras.stream().noneMatch(camera -> camera.getId() == id)) {
             logger.error("Введен несуществующий ID камеры");
             System.out.println("Нет камеры с таким id");
             return false;
         }
-        return cameras.stream().anyMatch(camera -> camera.getId() == id);
+        return true;
     }
 
 }
