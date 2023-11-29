@@ -125,6 +125,10 @@ public abstract class Camera {
         return shootingMode;
     }
 
+    public String getClassName() {
+        return className;
+    }
+
     public int getIso() {
         return iso;
     }

@@ -23,7 +23,7 @@ public class Main extends Application {
     private static void testCamerasCreation() {
         AllCamerasStorage.add(new WebCamera(2.8, MediaFileType.PHOTO, 5, "USB-A"));
         AllCamerasStorage.add(new SlrCamera(5, MediaFileType.VIDEO, 100, 2, 512));
-        AllCamerasStorage.add(new PhoneCamera(15, MediaFileType.PHOTO, 10, 41, 1));
+        AllCamerasStorage.add(new PhoneCamera(15, MediaFileType.PHOTO, 10, 41, "Front"));
         AllCamerasStorage.add(new SlrCamera(100, MediaFileType.VIDEO, 1, 12, 1024));
     }
 }

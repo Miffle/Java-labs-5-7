@@ -6,7 +6,6 @@ import org.btw.cameras.PhoneCamera;
 import org.btw.cameras.SlrCamera;
 import org.btw.cameras.WebCamera;
 import org.btw.elemetns.Groups;
-import org.btw.elemetns.Table;
 import org.btw.elemetns.TextBoxes;
 import org.btw.menus.CreationMenu;
 
@@ -34,18 +33,16 @@ public class CameraCreationHandler {
                         ((RadioButton) Groups.OutputConnectorGroup.getSelectedToggle()).getText()
                 )
         );
-        Table.updateList();
-        Table.table.refresh();
     }
 
     public static void addNewPhoneCamera() {
         AllCamerasStorage.add(
                 new PhoneCamera(
-                        CameraFeaturesInput.getApertureForCameras(),
-                        CameraFeaturesInput.getShootingMod(),
-                        CameraFeaturesInput.getIsoForCameras(),
-                        CameraFeaturesInput.inputZoomValue(),
-                        CameraFeaturesInput.inputModule()
+                        Integer.parseInt(TextBoxes.inputAperture.getText()),
+                        ((RadioButton) Groups.ShootingModeGroup.getSelectedToggle()).getText(),
+                        Integer.parseInt(TextBoxes.inputISO.getText()),
+                        Integer.parseInt(TextBoxes.inputZoom.getText()),
+                        ((RadioButton) Groups.InputModuleGroup.getSelectedToggle()).getText()
                 )
         );
     }
@@ -53,10 +50,12 @@ public class CameraCreationHandler {
     public static void addNewSlrCamera() {
         AllCamerasStorage.add(
                 new SlrCamera(
-                        CameraFeaturesInput.getApertureForCameras(),
-                        CameraFeaturesInput.getShootingMod(),
-                        CameraFeaturesInput.getIsoForCameras(),
-                        CameraFeaturesInput.inputZoomValue(),
-                        CameraFeaturesInput.inputStorageValue()));
+                        Integer.parseInt(TextBoxes.inputAperture.getText()),
+                        ((RadioButton) Groups.ShootingModeGroup.getSelectedToggle()).getText(),
+                        Integer.parseInt(TextBoxes.inputISO.getText()),
+                        Integer.parseInt(TextBoxes.inputZoom.getText()),
+                        Integer.parseInt(TextBoxes.inputStorage.getText())
+                )
+        );
     }
 }

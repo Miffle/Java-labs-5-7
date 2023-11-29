@@ -29,7 +29,7 @@ public class MainWindow {
     }
 
     private static VBox tableViewCreate() {
-        table.setPrefWidth(250);
+        table.setPrefWidth(350);
         table.setPrefHeight(200);
         Table.createColumns();
         return new VBox(table);

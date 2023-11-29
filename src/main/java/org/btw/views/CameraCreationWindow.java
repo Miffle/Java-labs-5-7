@@ -13,9 +13,10 @@ import static org.btw.elemetns.Buttons.*;
 import static org.btw.elemetns.Groups.*;
 import static org.btw.elemetns.TextBoxes.*;
 
-// TODO: 29.11.2023 Добавить валидацию ввода значений
 public class CameraCreationWindow {
-    private static final String REGEX_VALID_INTEGER = "^([1-9][0-9]{0,2}|1000)$";
+    private static final String REGEX_VALID_INTEGER_TO_ISO = "^([1-9][0-9]{0,2}|1000)$";
+    private static final String REGEX_VALID_INTEGER_TO_APERTURE_AND_ZOOM = "^([1-9]|10)$";
+    private static final String REGEX_VALID_INTEGER_TO_STORAGE= "^([1-9][0-9]{0,2}|1000)$";
 
     public CameraCreationWindow(Stage stage) {
         Scene scene = new Scene(makeGroup());
@@ -87,29 +88,39 @@ public class CameraCreationWindow {
     }
 
     private void zoomInput(VBox vBox) {
+        makeOnlyInt(inputZoom);
         setInputMaxWidth(inputZoom);
+        inputZoom.setTextFormatter(new TextFormatter<>(CameraCreationWindow::filterForApertureAndZoom));
         addTextBlockToVBox(vBox, ZoomLabel, inputZoom);
     }
 
     private void storageInput(VBox vBox) {
+        makeOnlyInt(inputStorage);
         setInputMaxWidth(inputStorage);
+        inputStorage.setTextFormatter(new TextFormatter<>(CameraCreationWindow::filterForStorage));
         addTextBlockToVBox(vBox, StorageLabel, inputStorage);
     }
 
     private static void ISOInput(VBox vBox) {
-        inputISO.textProperty().addListener((observableValue, s, t1) -> {
-            if (!t1.matches("\\d*")) {
-                inputISO.setText(t1.replaceAll("\\D", ""));
-            }
-        });
-        inputISO.setTextFormatter(new TextFormatter<>(CameraCreationWindow::filter));
+        makeOnlyInt(inputISO);
+        inputISO.setTextFormatter(new TextFormatter<>(CameraCreationWindow::filterForISO));
         setInputMaxWidth(inputISO);
         addTextBlockToVBox(vBox, ISOLabel, inputISO);
     }
 
     private static void ApertureInput(VBox vBox) {
+        makeOnlyInt(inputAperture);
+        inputAperture.setTextFormatter(new TextFormatter<>(CameraCreationWindow::filterForApertureAndZoom));
         setInputMaxWidth(inputAperture);
         addTextBlockToVBox(vBox, ApertureLabel, inputAperture);
+    }
+
+    private static void makeOnlyInt(TextField inputAperture) {
+        inputAperture.textProperty().addListener((observableValue, s, t1) -> {
+            if (!t1.matches("\\d*")) {
+                inputAperture.setText(t1.replaceAll("\\D", ""));
+            }
+        });
     }
 
     private void outputConnectorInput(VBox vBox) {
@@ -133,10 +144,22 @@ public class CameraCreationWindow {
         group.selectToggle(btn1);
     }
 
-    private static TextFormatter.Change filter(TextFormatter.Change change) {
-        if (!change.getControlNewText().matches(REGEX_VALID_INTEGER)) {
+    private static TextFormatter.Change filterForISO(TextFormatter.Change change) {
+        if (!change.getControlNewText().matches(REGEX_VALID_INTEGER_TO_ISO)) {
+            change.setText("");
+        }
+        return change;
+    }    private static TextFormatter.Change filterForApertureAndZoom(TextFormatter.Change change) {
+        if (!change.getControlNewText().matches(REGEX_VALID_INTEGER_TO_APERTURE_AND_ZOOM)) {
             change.setText("");
         }
         return change;
     }
+    private static TextFormatter.Change filterForStorage(TextFormatter.Change change) {
+        if (!change.getControlNewText().matches(REGEX_VALID_INTEGER_TO_STORAGE)) {
+            change.setText("");
+        }
+        return change;
+    }
+
 }

@@ -1,12 +1,11 @@
 package org.btw.controllers;
 
 import javafx.scene.control.RadioButton;
-import org.btw.cameras.AllCamerasStorage;
+import org.btw.elemetns.Table;
 import org.btw.menus_handlers.CameraCreationHandler;
 
 import static org.btw.elemetns.Buttons.confirm;
 import static org.btw.elemetns.Groups.cameraTypeGroup;
-import static org.btw.elemetns.Table.table;
 
 public class CameraCreationWindowController {
     public static void ConfirmButtonHandler(){
@@ -16,10 +15,11 @@ public class CameraCreationWindowController {
             switch (selectedCameraType){
                 case "SLR камера" -> CameraCreationHandler.addNewSlrCamera();
                 case "Веб камера" -> CameraCreationHandler.addNewWebCamera();
+                case "Камера телефона" -> CameraCreationHandler.addNewPhoneCamera();
             }
-            table.refresh();
-            System.out.println(AllCamerasStorage.getAllCamerasArray());
+            Table.updateList();
+            Table.table.refresh();
         });
     }
-//    private static
+
 }

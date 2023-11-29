@@ -3,7 +3,7 @@ package org.btw.cameras;
 public class PhoneCamera extends Camera {
     private int lastMediaFileId;
     private final double zoom;
-    private final int selectedCameraModule;
+    private final String selectedCameraModule;
 
 
     /**
@@ -11,7 +11,7 @@ public class PhoneCamera extends Camera {
      * @param shootingMode Режим съемки
      * @param iso          исо
      */
-    public PhoneCamera(double aperture, String shootingMode, int iso, double zoom, int selectedCameraModule) {
+    public PhoneCamera(double aperture, String shootingMode, int iso, double zoom, String selectedCameraModule) {
         super(aperture, shootingMode, iso);
         this.zoom = zoom;
         this.selectedCameraModule = selectedCameraModule;

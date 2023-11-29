@@ -19,13 +19,13 @@ public class CameraTest {
     }
     @Test
     void WebCameraCreation(){
-        Camera webTestCamera = new WebCamera(10, MediaFileType.PHOTO, 1000, 1);
+        Camera webTestCamera = new WebCamera(10, MediaFileType.PHOTO, 1000, "A");
         AllCamerasStorage.add(webTestCamera);
         Assertions.assertEquals(AllCamerasStorage.get(0), webTestCamera);
     }
     @Test
     void PhoneCameraCreation(){
-        Camera phoneTestCamera = new PhoneCamera(10, MediaFileType.VIDEO, 1000, 5, 1000);
+        Camera phoneTestCamera = new PhoneCamera(10, MediaFileType.VIDEO, 1000, 5, "Iphone");
         AllCamerasStorage.add(phoneTestCamera);
         Assertions.assertEquals(AllCamerasStorage.get(0), phoneTestCamera);
     }
