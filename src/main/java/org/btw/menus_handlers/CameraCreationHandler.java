@@ -1,8 +1,10 @@
 package org.btw.menus_handlers;
 
-import javafx.collections.ObservableList;
 import javafx.scene.control.RadioButton;
-import org.btw.cameras.*;
+import org.btw.cameras.AllCamerasStorage;
+import org.btw.cameras.PhoneCamera;
+import org.btw.cameras.SlrCamera;
+import org.btw.cameras.WebCamera;
 import org.btw.elemetns.Groups;
 import org.btw.elemetns.Table;
 import org.btw.elemetns.TextBoxes;
@@ -32,6 +34,7 @@ public class CameraCreationHandler {
                         ((RadioButton) Groups.OutputConnectorGroup.getSelectedToggle()).getText()
                 )
         );
+        Table.updateList();
         Table.table.refresh();
     }
 
