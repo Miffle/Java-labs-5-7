@@ -2,10 +2,10 @@ package org.btw.cameras;
 
 public class WebCamera extends Camera {
     private int lastMediaFileId;
-    private final int outputConnector;
+    private final String outputConnector;
 
 
-    public WebCamera(double aperture, String shootingMode, int iso, int outputConnector) {
+    public WebCamera(double aperture, String shootingMode, int iso, String outputConnector) {
         super(aperture, shootingMode, iso);
         this.outputConnector = outputConnector;
     }

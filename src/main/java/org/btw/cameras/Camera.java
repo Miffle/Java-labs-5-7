@@ -120,4 +120,16 @@ public abstract class Camera {
     }
 
     protected abstract int makeIdForNewMediaFile();
+
+    public String getShootingMode() {
+        return shootingMode;
+    }
+
+    public int getIso() {
+        return iso;
+    }
+
+    public double getAperture() {
+        return aperture;
+    }
 }

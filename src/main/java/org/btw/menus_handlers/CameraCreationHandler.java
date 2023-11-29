@@ -1,9 +1,11 @@
 package org.btw.menus_handlers;
 
-import org.btw.cameras.AllCamerasStorage;
-import org.btw.cameras.PhoneCamera;
-import org.btw.cameras.SlrCamera;
-import org.btw.cameras.WebCamera;
+import javafx.collections.ObservableList;
+import javafx.scene.control.RadioButton;
+import org.btw.cameras.*;
+import org.btw.elemetns.Groups;
+import org.btw.elemetns.Table;
+import org.btw.elemetns.TextBoxes;
 import org.btw.menus.CreationMenu;
 
 public class CameraCreationHandler {
@@ -12,6 +14,7 @@ public class CameraCreationHandler {
      */
     public static void cameraChoice() {
         CreationMenu menu = new CreationMenu();
+
         boolean exit = false;
         while (!exit) {
             exit = menu.optionChoice();
@@ -19,15 +22,17 @@ public class CameraCreationHandler {
 
     }
 
+
     public static void addNewWebCamera() {
         AllCamerasStorage.add(
                 new WebCamera(
-                        CameraFeaturesInput.getApertureForCameras(),
-                        CameraFeaturesInput.getShootingMod(),
-                        CameraFeaturesInput.getIsoForCameras(),
-                        CameraFeaturesInput.inputConnector()
+                        Integer.parseInt(TextBoxes.inputAperture.getText()),
+                        ((RadioButton) Groups.ShootingModeGroup.getSelectedToggle()).getText(),
+                        Integer.parseInt(TextBoxes.inputISO.getText()),
+                        ((RadioButton) Groups.OutputConnectorGroup.getSelectedToggle()).getText()
                 )
         );
+        Table.table.refresh();
     }
 
     public static void addNewPhoneCamera() {
