@@ -2,8 +2,8 @@ package org.btw.cameras;
 
 public class PhoneCamera extends Camera {
     private int lastMediaFileId;
-    private final double zoom;
-    private final String selectedCameraModule;
+    private double zoom;
+    private String selectedCameraModule;
 
 
     /**
@@ -16,6 +16,7 @@ public class PhoneCamera extends Camera {
         this.zoom = zoom;
         this.selectedCameraModule = selectedCameraModule;
     }
+
     @Override
     public String toString() {
         return super.toString() + "\n" +
@@ -26,5 +27,46 @@ public class PhoneCamera extends Camera {
     @Override
     protected int makeIdForNewMediaFile() {
         return ++lastMediaFileId;
+    }
+
+    @Override
+    public double getStorage() {
+        return 0;
+    }
+
+    @Override
+    public void setZoom(double zoom) {
+        this.zoom = zoom;
+    }
+
+    @Override
+    public void setStorage(double storage) {
+
+    }
+
+    @Override
+    public void setOutputConnector(String connector) {
+
+    }
+
+    @Override
+    public void setSelectedCameraModule(String Module) {
+        this.selectedCameraModule = Module;
+    }
+
+    @Override
+    public double getZoom() {
+        return zoom;
+    }
+
+    @Override
+    public String getOutputConnector() {
+        return null;
+    }
+
+
+    @Override
+    public String getSelectedCameraModule() {
+        return selectedCameraModule;
     }
 }

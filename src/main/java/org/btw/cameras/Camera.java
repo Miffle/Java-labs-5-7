@@ -128,7 +128,16 @@ public abstract class Camera {
     public String getClassName() {
         return className;
     }
+    public abstract double getStorage();
 
+    public abstract void setZoom(double zoom);
+
+    public abstract void setStorage(double storage);
+    public abstract void setOutputConnector(String connector);
+    public abstract void setSelectedCameraModule(String Module);
+    public abstract double getZoom();
+    public abstract String getOutputConnector();
+    public abstract String getSelectedCameraModule();
     public int getIso() {
         return iso;
     }
