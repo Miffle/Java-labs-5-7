@@ -7,6 +7,25 @@ public abstract class Media {
     protected int id;
     protected String mediaFileType;
 
+    public double getAperture() {
+        return aperture;
+    }
+
+    public int getIso() {
+        return iso;
+    }
+
+    public int getCameraId() {
+        return cameraId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getMediaFileType() {
+        return mediaFileType;
+    }
 
     public Media(int cameraId, int iso, double aperture, int mediaId) {
         this.cameraId = cameraId;

@@ -5,8 +5,9 @@ import org.btw.cameras.AllCamerasStorage;
 import org.btw.cameras.PhoneCamera;
 import org.btw.cameras.SlrCamera;
 import org.btw.cameras.WebCamera;
-import org.btw.elemetns.Groups;
-import org.btw.elemetns.TextBoxes;
+import org.btw.database.InputInDB;
+import org.btw.elemetns.CreationWindow.Groups;
+import org.btw.elemetns.CreationWindow.TextFields;
 import org.btw.menus.CreationMenu;
 
 public class CameraCreationHandler {
@@ -24,38 +25,42 @@ public class CameraCreationHandler {
     }
 
 
-    public static void addNewWebCamera() {
+    public static void addNewWebCamera(TextFields fields, Groups groups) {
         AllCamerasStorage.add(
                 new WebCamera(
-                        Integer.parseInt(TextBoxes.inputAperture.getText()),
-                        ((RadioButton) Groups.ShootingModeGroup.getSelectedToggle()).getText(),
-                        Integer.parseInt(TextBoxes.inputISO.getText()),
-                        ((RadioButton) Groups.OutputConnectorGroup.getSelectedToggle()).getText()
+                        Integer.parseInt(fields.inputAperture.getText()),
+                        ((RadioButton) groups.ShootingModeGroup.getSelectedToggle()).getText(),
+                        Integer.parseInt(fields.inputISO.getText()),
+                        ((RadioButton) groups.OutputConnectorGroup.getSelectedToggle()).getText()
                 )
         );
+        new InputInDB(AllCamerasStorage.get(AllCamerasStorage.getAllCamerasArray().size()-1));
     }
 
-    public static void addNewPhoneCamera() {
+    public static void addNewPhoneCamera(TextFields fields, Groups groups) {
         AllCamerasStorage.add(
                 new PhoneCamera(
-                        Integer.parseInt(TextBoxes.inputAperture.getText()),
-                        ((RadioButton) Groups.ShootingModeGroup.getSelectedToggle()).getText(),
-                        Integer.parseInt(TextBoxes.inputISO.getText()),
-                        Integer.parseInt(TextBoxes.inputZoom.getText()),
-                        ((RadioButton) Groups.InputModuleGroup.getSelectedToggle()).getText()
+                        Integer.parseInt(fields.inputAperture.getText()),
+                        ((RadioButton) groups.ShootingModeGroup.getSelectedToggle()).getText(),
+                        Integer.parseInt(fields.inputISO.getText()),
+                        Integer.parseInt(fields.inputZoom.getText()),
+                        ((RadioButton) groups.InputModuleGroup.getSelectedToggle()).getText()
                 )
         );
+        new InputInDB(AllCamerasStorage.get(AllCamerasStorage.getAllCamerasArray().size()-1));
+
     }
 
-    public static void addNewSlrCamera() {
+    public static void addNewSlrCamera(TextFields fields, Groups groups) {
         AllCamerasStorage.add(
                 new SlrCamera(
-                        Integer.parseInt(TextBoxes.inputAperture.getText()),
-                        ((RadioButton) Groups.ShootingModeGroup.getSelectedToggle()).getText(),
-                        Integer.parseInt(TextBoxes.inputISO.getText()),
-                        Integer.parseInt(TextBoxes.inputZoom.getText()),
-                        Integer.parseInt(TextBoxes.inputStorage.getText())
+                        Integer.parseInt(fields.inputAperture.getText()),
+                        ((RadioButton) groups.ShootingModeGroup.getSelectedToggle()).getText(),
+                        Integer.parseInt(fields.inputISO.getText()),
+                        Integer.parseInt(fields.inputZoom.getText()),
+                        Integer.parseInt(fields.inputStorage.getText())
                 )
         );
+        new InputInDB(AllCamerasStorage.get(AllCamerasStorage.getAllCamerasArray().size()-1));
     }
 }

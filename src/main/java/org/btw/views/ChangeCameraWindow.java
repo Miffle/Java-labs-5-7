@@ -6,18 +6,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.btw.cameras.AllCamerasStorage;
 import org.btw.cameras.Camera;
-import org.btw.elemetns.Buttons;
-import org.btw.elemetns.Groups;
+import org.btw.database.ChangeRowInDB;
+import org.btw.elemetns.CreationWindow.TextFields;
+import org.btw.elemetns.CreationWindow.VBoxes;
+import org.btw.elemetns.EditWindowButtons.ConfirmButton;
 import org.btw.elemetns.Table;
-import org.btw.elemetns.TextBoxes;
 
-import static org.btw.elemetns.Buttons.confirmEdit;
 
 public class ChangeCameraWindow {
-    static Camera camera;
+    private final Camera camera;
+    private final VBoxes vBoxes = new VBoxes();
+    private final TextFields fields = vBoxes.getFields();
+    private final ConfirmButton confirmButton = new ConfirmButton();
 
     public ChangeCameraWindow(Stage stage, int cameraId) {
-        getCamera(cameraId);
+        camera = getCamera(cameraId);
         Scene scene = new Scene(makeVBox());
         stage.setScene(scene);
         stage.sizeToScene();
@@ -25,83 +28,84 @@ public class ChangeCameraWindow {
         stage.show();
     }
 
-    public static VBox makeVBox() {
+    public VBox makeVBox() {
         VBox vBox = new VBox();
-        vBox.getChildren().add(TextBoxes.isoVbox);
-        vBox.getChildren().add(TextBoxes.apertureVbox);
-        vBox.getChildren().add(Buttons.inputShootingModeVBox());
+        vBox.getChildren().add(vBoxes.isoV);
+        vBox.getChildren().add(vBoxes.apertureV);
+        vBox.getChildren().add(vBoxes.shootingModeV);
         addOtherBoxes(vBox);
         return vBox;
     }
 
-    public static void getCamera(int cameraId) {
-        camera = AllCamerasStorage.get(cameraId);
+    public static Camera getCamera(int cameraId) {
+        return AllCamerasStorage.get(cameraId);
     }
 
-    private static void addOtherBoxes(VBox vBox) {
+    private void addOtherBoxes(VBox vBox) {
         switch (camera.getClassName()) {
             case "SlrCamera" -> {
-                vBox.getChildren().add(TextBoxes.zoomVbox);
-                vBox.getChildren().add(TextBoxes.storageVbox);
+                vBox.getChildren().add(vBoxes.zoomV);
+                vBox.getChildren().add(vBoxes.storageV);
             }
-            case "WebCamera" -> vBox.getChildren().add(Buttons.connectorTypeVBox());
+            case "WebCamera" -> vBox.getChildren().add(vBoxes.outputConnectorV);
             case "PhoneCamera" -> {
-                vBox.getChildren().add(TextBoxes.zoomVbox);
-                vBox.getChildren().add(Buttons.moduleVBox());
+                vBox.getChildren().add(vBoxes.zoomV);
+                vBox.getChildren().add(vBoxes.moduleV);
             }
         }
         setInputsValues();
-        vBox.getChildren().add(Buttons.confirmEdit);
+        vBox.getChildren().add(confirmButton.confirmEdit);
     }
 
-    private static void setInputsValues() {
-        TextBoxes.inputISO.setText(String.valueOf(camera.getIso()));
-        TextBoxes.inputAperture.setText(String.valueOf(camera.getAperture()));
-        if (Buttons.inputShootingModePhoto.getText().equals(camera.getShootingMode())) {
-            Groups.ShootingModeGroup.selectToggle(Buttons.inputShootingModePhoto);
+    private void setInputsValues() {
+        fields.setInputISO(String.valueOf(camera.getIso()));
+        fields.setInputAperture(String.valueOf(camera.getAperture()));
+        if (vBoxes.getButtons().inputShootingModePhoto.getText().equals(camera.getShootingMode())) {
+            vBoxes.getGroups().ShootingModeGroup.selectToggle(vBoxes.getButtons().inputShootingModePhoto);
         } else {
-            Groups.ShootingModeGroup.selectToggle(Buttons.inputShootingModeVideo);
+            vBoxes.getGroups().ShootingModeGroup.selectToggle(vBoxes.getButtons().inputShootingModeVideo);
         }
         switch (camera.getClassName()) {
             case "SlrCamera" -> {
-                TextBoxes.inputStorage.setText(String.valueOf(camera.getStorage()));
-                TextBoxes.inputZoom.setText(String.valueOf(camera.getZoom()));
+                fields.inputStorage.setText(String.valueOf(camera.getStorage()));
+                fields.inputZoom.setText(String.valueOf(camera.getZoom()));
             }
             case "WebCamera" -> {
-                if (Buttons.connectorTypeC.getText().equals(camera.getOutputConnector())) {
-                    Groups.OutputConnectorGroup.selectToggle(Buttons.connectorTypeC);
+                if (vBoxes.getButtons().connectorTypeC.getText().equals(camera.getOutputConnector())) {
+                    vBoxes.getGroups().OutputConnectorGroup.selectToggle(vBoxes.getButtons().connectorTypeC);
                 } else {
-                    Groups.OutputConnectorGroup.selectToggle(Buttons.connectorTypeA);
+                    vBoxes.getGroups().OutputConnectorGroup.selectToggle(vBoxes.getButtons().connectorTypeA);
                 }
             }
             case "PhoneCamera" -> {
-                TextBoxes.inputZoom.setText(String.valueOf(camera.getZoom()));
-                if (Buttons.frontModule.getText().equals(camera.getSelectedCameraModule())) {
-                    Groups.InputModuleGroup.selectToggle(Buttons.frontModule);
+                fields.inputZoom.setText(String.valueOf(camera.getZoom()));
+                if (vBoxes.getButtons().frontModule.getText().equals(camera.getSelectedCameraModule())) {
+                    vBoxes.getGroups().InputModuleGroup.selectToggle(vBoxes.getButtons().frontModule);
                 } else {
-                    Groups.InputModuleGroup.selectToggle(Buttons.mainModule);
+                    vBoxes.getGroups().InputModuleGroup.selectToggle(vBoxes.getButtons().mainModule);
                 }
             }
         }
     }
-    public static void EditConfirmButtonHandler(){
-        confirmEdit.setOnAction(e ->{
-            camera.changeISO(Integer.parseInt(TextBoxes.inputISO.getText()));
-            camera.changeAperture(Double.parseDouble(TextBoxes.inputAperture.getText()));
-            camera.changeShootingMode(((RadioButton) Groups.ShootingModeGroup.getSelectedToggle()).getText());
+    public void EditConfirmButtonHandler(){
+        confirmButton.confirmEdit.setOnAction(e ->{
+            camera.changeISO(Integer.parseInt(fields.inputISO.getText()));
+            camera.changeAperture(Double.parseDouble(fields.inputAperture.getText()));
+            camera.changeShootingMode(((RadioButton) vBoxes.getGroups().ShootingModeGroup.getSelectedToggle()).getText());
             switch (camera.getClassName()){
                 case "SlrCamera" -> {
-                    camera.setStorage(Double.parseDouble(TextBoxes.inputStorage.getText()));
-                    camera.setZoom(Double.parseDouble(TextBoxes.inputZoom.getText()));
+                    camera.setStorage(Double.parseDouble(fields.inputStorage.getText()));
+                    camera.setZoom(Double.parseDouble(fields.inputZoom.getText()));
                 }
-                case "WebCamera" -> camera.setOutputConnector(((RadioButton) Groups.OutputConnectorGroup.getSelectedToggle()).getText());
+                case "WebCamera" -> camera.setOutputConnector(((RadioButton) vBoxes.getGroups().OutputConnectorGroup.getSelectedToggle()).getText());
                 case "PhoneCamera" -> {
-                    camera.setZoom(Double.parseDouble(TextBoxes.inputZoom.getText()));
-                    camera.setSelectedCameraModule(((RadioButton) Groups.InputModuleGroup.getSelectedToggle()).getText());
+                    camera.setZoom(Double.parseDouble(fields.inputZoom.getText()));
+                    camera.setSelectedCameraModule(((RadioButton) vBoxes.getGroups().InputModuleGroup.getSelectedToggle()).getText());
                 }
             }
-            Table.updateList();
-            Table.table.refresh();
+            new ChangeRowInDB(camera);
+            Table.cameraTableView.refresh();
+
         });
     }
 

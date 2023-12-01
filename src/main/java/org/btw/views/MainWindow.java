@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import org.btw.controllers.MainWindowController;
 import org.btw.elemetns.Table;
 
-import static org.btw.elemetns.Table.table;
+import static org.btw.elemetns.Table.cameraTableView;
 
 public class MainWindow {
 
@@ -29,10 +29,10 @@ public class MainWindow {
     }
 
     private static VBox tableViewCreate() {
-        table.setPrefWidth(350);
-        table.setPrefHeight(200);
-        Table.createColumns();
-        return new VBox(table);
+        cameraTableView.setPrefWidth(350);
+        cameraTableView.setPrefHeight(200);
+        Table.createCameraColumns();
+        return new VBox(cameraTableView);
     }
 
 

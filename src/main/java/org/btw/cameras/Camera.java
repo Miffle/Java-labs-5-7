@@ -1,5 +1,6 @@
 package org.btw.cameras;
 
+import org.btw.database.GetIdForCamerasArray;
 import org.btw.mediafiles.Media;
 import org.btw.mediafiles.MediaFileType;
 import org.btw.mediafiles.Picture;
@@ -7,18 +8,18 @@ import org.btw.mediafiles.Video;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Camera {
+public abstract class Camera implements Serializable {
     private static final Logger logger = LoggerFactory.getLogger(Camera.class);
     protected String className = this.getClass().getSimpleName();
-    protected static int lastId;
     protected int mediaId;
     protected int id;
     protected String shootingMode;
-    protected List<Media> allMedia = new ArrayList<>();
+    public List<Media> allMedia = new ArrayList<>();
     protected int iso;
     protected double aperture; // Диафрагма
 
@@ -36,9 +37,11 @@ public abstract class Camera {
      * @return id
      */
     private int makeIdForNewCamera() {
-        return ++lastId;
+        return new GetIdForCamerasArray().getNewId();
     }
-
+    public void setId(int Id){
+        this.id = Id;
+    }
     /**
      * Меняет значение shootingMode на введенное пользователем
      *
