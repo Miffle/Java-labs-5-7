@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class AllCamerasStorage {
-    static private final List<Camera> allCameras = new ArrayList<>();
+    static public List<Camera> allCameras = new ArrayList<>();
 
     /**
      * Выводит список всех камер, которые есть в базе

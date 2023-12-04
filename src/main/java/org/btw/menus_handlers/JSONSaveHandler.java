@@ -10,12 +10,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class JSONSaveHandler {
-    private static final Logger logger = LoggerFactory.getLogger(CameraDeletingHandler.class);
+    private static final Logger logger = LoggerFactory.getLogger("file");
     public static void createJSONFile() {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.setPrettyPrinting().create();
         try (FileWriter file = new FileWriter("result.json")) {
             gson.toJson(AllCamerasStorage.getAllCamerasArray(), file);
+            logger.info("Сохранено в result.json");
         } catch (IOException e) {
             logger.error(e.getMessage());
         }

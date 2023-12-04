@@ -1,6 +1,8 @@
 package org.btw.mediafiles;
 
-public abstract class Media {
+import java.io.Serializable;
+
+public abstract class Media implements Serializable {
     protected double aperture; // Диафрагма
     protected int iso;
     protected int cameraId;

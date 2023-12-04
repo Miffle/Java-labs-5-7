@@ -1,12 +1,11 @@
 package org.btw.cameras;
 
+import org.apache.log4j.Logger;
 import org.btw.database.GetIdForCamerasArray;
 import org.btw.mediafiles.Media;
 import org.btw.mediafiles.MediaFileType;
 import org.btw.mediafiles.Picture;
 import org.btw.mediafiles.Video;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,7 +13,9 @@ import java.util.List;
 import java.util.Objects;
 
 public abstract class Camera implements Serializable {
-    private static final Logger logger = LoggerFactory.getLogger(Camera.class);
+    private static final long serialVersionUID = 1;
+    private static final Logger logger = Logger.getLogger("Camera");
+    private static final Logger inputLogger = Logger.getLogger("input");
     protected String className = this.getClass().getSimpleName();
     protected int mediaId;
     protected int id;
@@ -49,7 +50,7 @@ public abstract class Camera implements Serializable {
      */
     public void changeShootingMode(String newShootingMode) {
         this.shootingMode = newShootingMode;
-        logger.info("начальным режимом съемки выбран " + newShootingMode);
+        inputLogger.info("начальным режимом съемки выбран " + newShootingMode);
     }
 
     /**
