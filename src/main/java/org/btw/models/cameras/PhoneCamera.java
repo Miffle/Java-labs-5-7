@@ -1,4 +1,4 @@
-package org.btw.cameras;
+package org.btw.models.cameras;
 
 public class PhoneCamera extends Camera {
     private int lastMediaFileId;

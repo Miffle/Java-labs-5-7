@@ -1,8 +1,7 @@
 package cameras;
 
-import org.btw.cameras.*;
-import org.btw.mediafiles.MediaFileType;
-import org.btw.cameras.Camera;
+import org.btw.models.cameras.*;
+import org.btw.models.mediafiles.MediaFileType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package org.btw.menus_handlers;
 
-import org.btw.cameras.AllCamerasStorage;
+import org.btw.models.cameras.AllCamerasStorage;
 import org.btw.menus.ChangeFeaturesMenu;
 import org.btw.menus.Menu;
 

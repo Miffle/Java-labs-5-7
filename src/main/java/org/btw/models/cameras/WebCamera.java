@@ -1,21 +1,20 @@
-package org.btw.cameras;
+package org.btw.models.cameras;
 
-public class SlrCamera extends Camera {
+public class WebCamera extends Camera {
     private int lastMediaFileId;
-    private double zoom;
-    private double storage;
+    private String outputConnector;
 
-    public SlrCamera(double aperture, String shootingMode, int iso, double zoom, double storage) {
+
+    public WebCamera(double aperture, String shootingMode, int iso, String outputConnector) {
         super(aperture, shootingMode, iso);
-        this.zoom = zoom;
-        this.storage = storage;
+        this.outputConnector = outputConnector;
     }
+
 
     @Override
     public String toString() {
         return super.toString() + "\n" +
-                "\tZoom = " + this.zoom + "\n" +
-                "\tХранилище = " + this.storage;
+                "\tКоннектор = " + this.outputConnector;
     }
 
     @Override
@@ -25,22 +24,22 @@ public class SlrCamera extends Camera {
 
     @Override
     public double getStorage() {
-        return storage;
+        return 0;
     }
 
     @Override
-    public void setZoom(double zoom){
-        this.zoom = zoom;
+    public void setZoom(double zoom) {
+
     }
 
     @Override
     public void setStorage(double storage) {
-        this.storage = storage;
+
     }
 
     @Override
     public void setOutputConnector(String connector) {
-
+        this.outputConnector = connector;
     }
 
     @Override
@@ -50,12 +49,12 @@ public class SlrCamera extends Camera {
 
     @Override
     public double getZoom() {
-        return zoom;
+        return 0;
     }
 
     @Override
     public String getOutputConnector() {
-        return null;
+        return outputConnector;
     }
 
     @Override

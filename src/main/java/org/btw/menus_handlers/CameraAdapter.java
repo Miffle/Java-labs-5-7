@@ -1,10 +1,10 @@
 package org.btw.menus_handlers;
 
 import com.google.gson.*;
-import org.btw.cameras.Camera;
-import org.btw.cameras.PhoneCamera;
-import org.btw.cameras.SlrCamera;
-import org.btw.cameras.WebCamera;
+import org.btw.models.cameras.Camera;
+import org.btw.models.cameras.PhoneCamera;
+import org.btw.models.cameras.SlrCamera;
+import org.btw.models.cameras.WebCamera;
 
 import java.lang.reflect.Type;
 

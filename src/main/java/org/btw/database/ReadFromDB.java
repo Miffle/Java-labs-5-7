@@ -1,6 +1,9 @@
 package org.btw.database;
 
-import org.btw.cameras.*;
+import org.btw.models.cameras.AllCamerasStorage;
+import org.btw.models.cameras.PhoneCamera;
+import org.btw.models.cameras.SlrCamera;
+import org.btw.models.cameras.WebCamera;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +15,7 @@ public class ReadFromDB {
 
     public ReadFromDB() {
         try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Cameras");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM Cameras ORDER BY id");
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 switch (result.getString(2)) {

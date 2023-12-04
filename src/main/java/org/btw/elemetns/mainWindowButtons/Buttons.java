@@ -2,7 +2,7 @@ package org.btw.elemetns.mainWindowButtons;
 
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import org.btw.cameras.AllCamerasStorage;
+import org.btw.models.cameras.AllCamerasStorage;
 import org.btw.database.DeleteFromDB;
 import org.btw.elemetns.Table;
 import org.btw.menus_handlers.FromJSONReadHandler;
@@ -50,7 +50,7 @@ public class Buttons {
         edit.setOnAction(e -> new ChangeCameraWindow(new Stage(), Table.cameraTableView.getSelectionModel().getFocusedIndex()));
     }
     private void jsonButtonHandler(){
-        saveInJSON.setOnAction(e -> JSONSaveHandler.createJSONFile());
+        saveInJSON.setOnAction(e -> new Thread(JSONSaveHandler::new).start());
         loadFromJSON.setOnAction(e-> {FromJSONReadHandler.readFromJSON();
             Table.updateCamerasList();
         });

@@ -2,7 +2,7 @@ package org.btw.elemetns.CreationWindow;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import org.btw.mediafiles.MediaFileType;
+import org.btw.models.mediafiles.MediaFileType;
 
 public class Buttons {
     public final RadioButton SLRCamera = new RadioButton("SLR камера"),

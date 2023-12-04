@@ -2,11 +2,11 @@ package org.btw.menus_handlers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.btw.cameras.AllCamerasStorage;
-import org.btw.cameras.Camera;
+import org.btw.models.cameras.AllCamerasStorage;
+import org.btw.models.cameras.Camera;
 import org.btw.database.ClearDB;
 import org.btw.database.InputInDB;
-import org.btw.mediafiles.Media;
+import org.btw.models.mediafiles.Media;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +25,7 @@ public class FromJSONReadHandler {
             AllCamerasStorage.clearAll();
             for (Camera camera : cameras) {
                 AllCamerasStorage.add(camera);
-                new InputInDB(camera);
+                new Thread(new InputInDB(camera)).start();
             }
             logger.info("Камеры считаны с JSON");
         } catch (Exception e) {

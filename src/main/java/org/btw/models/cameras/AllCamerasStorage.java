@@ -1,11 +1,11 @@
-package org.btw.cameras;
+package org.btw.models.cameras;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class AllCamerasStorage {
-    static public List<Camera> allCameras = new ArrayList<>();
+    public static List<Camera> allCameras = new ArrayList<>();
 
     /**
      * Выводит список всех камер, которые есть в базе

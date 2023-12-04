@@ -1,10 +1,10 @@
 package org.btw.menus_handlers;
 
 import javafx.scene.control.RadioButton;
-import org.btw.cameras.AllCamerasStorage;
-import org.btw.cameras.PhoneCamera;
-import org.btw.cameras.SlrCamera;
-import org.btw.cameras.WebCamera;
+import org.btw.models.cameras.AllCamerasStorage;
+import org.btw.models.cameras.PhoneCamera;
+import org.btw.models.cameras.SlrCamera;
+import org.btw.models.cameras.WebCamera;
 import org.btw.database.InputInDB;
 import org.btw.elemetns.CreationWindow.Groups;
 import org.btw.elemetns.CreationWindow.TextFields;
@@ -34,7 +34,7 @@ public class CameraCreationHandler {
                         ((RadioButton) groups.OutputConnectorGroup.getSelectedToggle()).getText()
                 )
         );
-        new InputInDB(AllCamerasStorage.get(AllCamerasStorage.getAllCamerasArray().size()-1));
+        new Thread(new InputInDB(AllCamerasStorage.get(AllCamerasStorage.getAllCamerasArray().size() - 1))).start();
     }
 
     public static void addNewPhoneCamera(TextFields fields, Groups groups) {
@@ -47,7 +47,8 @@ public class CameraCreationHandler {
                         ((RadioButton) groups.InputModuleGroup.getSelectedToggle()).getText()
                 )
         );
-        new InputInDB(AllCamerasStorage.get(AllCamerasStorage.getAllCamerasArray().size()-1));
+        new Thread(new InputInDB(AllCamerasStorage.get(AllCamerasStorage.getAllCamerasArray().size() - 1))).start();
+
 
     }
 
@@ -61,6 +62,7 @@ public class CameraCreationHandler {
                         Integer.parseInt(fields.inputStorage.getText())
                 )
         );
-        new InputInDB(AllCamerasStorage.get(AllCamerasStorage.getAllCamerasArray().size()-1));
+        new Thread(new InputInDB(AllCamerasStorage.get(AllCamerasStorage.getAllCamerasArray().size() - 1))).start();
+
     }
 }

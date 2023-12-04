@@ -1,9 +1,9 @@
 package menus_handlers;
 
-import org.btw.cameras.AllCamerasStorage;
-import org.btw.cameras.Camera;
-import org.btw.cameras.SlrCamera;
-import org.btw.mediafiles.MediaFileType;
+import org.btw.models.cameras.AllCamerasStorage;
+import org.btw.models.cameras.Camera;
+import org.btw.models.cameras.SlrCamera;
+import org.btw.models.mediafiles.MediaFileType;
 import org.btw.menus_handlers.FromJSONReadHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

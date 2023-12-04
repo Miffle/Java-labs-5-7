@@ -1,11 +1,11 @@
-package org.btw.cameras;
+package org.btw.models.cameras;
 
 import org.apache.log4j.Logger;
 import org.btw.database.GetIdForCamerasArray;
-import org.btw.mediafiles.Media;
-import org.btw.mediafiles.MediaFileType;
-import org.btw.mediafiles.Picture;
-import org.btw.mediafiles.Video;
+import org.btw.models.mediafiles.Media;
+import org.btw.models.mediafiles.MediaFileType;
+import org.btw.models.mediafiles.Picture;
+import org.btw.models.mediafiles.Video;
 
 import java.io.Serializable;
 import java.util.ArrayList;

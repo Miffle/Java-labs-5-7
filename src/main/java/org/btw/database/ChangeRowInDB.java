@@ -1,6 +1,6 @@
 package org.btw.database;
 
-import org.btw.cameras.Camera;
+import org.btw.models.cameras.Camera;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

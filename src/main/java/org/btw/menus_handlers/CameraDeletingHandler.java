@@ -1,7 +1,7 @@
 package org.btw.menus_handlers;
 
-import org.btw.cameras.AllCamerasStorage;
-import org.btw.cameras.Camera;
+import org.btw.models.cameras.AllCamerasStorage;
+import org.btw.models.cameras.Camera;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

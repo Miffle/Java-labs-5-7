@@ -1,7 +1,7 @@
 package org.btw.menus_handlers;
 
-import org.btw.cameras.Camera;
-import org.btw.mediafiles.MediaFileType;
+import org.btw.models.cameras.Camera;
+import org.btw.models.mediafiles.MediaFileType;
 import org.btw.menus.ChoiceFunctionsMenu;
 import org.btw.menus.Menu;
 

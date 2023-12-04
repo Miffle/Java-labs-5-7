@@ -1,9 +1,9 @@
 package org.btw.menus_handlers;
 
 import com.google.gson.*;
-import org.btw.mediafiles.Media;
-import org.btw.mediafiles.Picture;
-import org.btw.mediafiles.Video;
+import org.btw.models.mediafiles.Media;
+import org.btw.models.mediafiles.Picture;
+import org.btw.models.mediafiles.Video;
 
 import java.lang.reflect.Type;
 

@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.btw.cameras.Camera;
+import org.btw.models.cameras.Camera;
 import org.btw.controllers.UseCameraWindowController;
 import org.btw.elemetns.Buttons;
 import org.btw.elemetns.Table;

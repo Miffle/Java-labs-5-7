@@ -4,9 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.btw.cameras.AllCamerasStorage;
-import org.btw.cameras.Camera;
-import org.btw.mediafiles.Media;
+import org.btw.models.cameras.AllCamerasStorage;
+import org.btw.models.cameras.Camera;
+import org.btw.models.mediafiles.Media;
 
 public class Table {
     public static TableView<Camera> cameraTableView = new TableView<>(FXCollections.observableList(AllCamerasStorage.getAllCamerasArray()));

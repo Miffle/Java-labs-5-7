@@ -1,4 +1,4 @@
-package org.btw.mediafiles;
+package org.btw.models.mediafiles;
 
 public class Video extends Media {
     public Video(int cameraId, int iso, double aperture, int mediaId) {

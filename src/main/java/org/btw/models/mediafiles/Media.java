@@ -1,4 +1,4 @@
-package org.btw.mediafiles;
+package org.btw.models.mediafiles;
 
 import java.io.Serializable;
 

@@ -1,9 +1,9 @@
 package org.btw.controllers;
 
 
-import org.btw.cameras.Camera;
+import org.btw.models.cameras.Camera;
 import org.btw.elemetns.Table;
-import org.btw.mediafiles.MediaFileType;
+import org.btw.models.mediafiles.MediaFileType;
 
 import static org.btw.elemetns.Buttons.*;
 
