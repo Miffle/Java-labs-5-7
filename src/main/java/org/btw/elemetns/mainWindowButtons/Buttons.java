@@ -35,8 +35,8 @@ public class Buttons {
     private void deleteButtonHandler() {
         delete.setOnAction(e -> {
             int id = Table.cameraTableView.getSelectionModel().getFocusedIndex();
-            new DeleteFromDB((int) Table.cameraTableView.getColumns().get(0).getCellObservableValue(id).getValue());
             AllCamerasStorage.remove(id);
+            new DeleteFromDB((int) Table.cameraTableView.getColumns().get(0).getCellObservableValue(id).getValue());
             Table.updateCamerasList();
         });
     }
@@ -49,9 +49,13 @@ public class Buttons {
     private void editButtonHandler() {
         edit.setOnAction(e -> new ChangeCameraWindow(new Stage(), Table.cameraTableView.getSelectionModel().getFocusedIndex()));
     }
-    private void jsonButtonHandler(){
-        saveInJSON.setOnAction(e -> new Thread(JSONSaveHandler::new).start());
-        loadFromJSON.setOnAction(e-> {FromJSONReadHandler.readFromJSON();
+
+    private void jsonButtonHandler() {
+        saveInJSON.setOnAction(e -> {
+            new Thread(new JSONSaveHandler()).start();
+        });
+        loadFromJSON.setOnAction(e -> {
+            FromJSONReadHandler.readFromJSON();
             Table.updateCamerasList();
         });
     }

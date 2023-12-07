@@ -1,15 +1,15 @@
 package org.btw.database;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class Prop {
-    FileInputStream file;
+
     Properties prop = new Properties();
     public Prop(){
-        try {
-            file = new FileInputStream("src/main/resources/app.properties");
+
+        try (InputStream file = getClass().getResourceAsStream("/app.properties")){
             prop.load(file);
         } catch (IOException e) {
             throw new RuntimeException(e);

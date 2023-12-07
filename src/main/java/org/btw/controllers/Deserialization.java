@@ -20,7 +20,7 @@ public class Deserialization implements Runnable {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             cameras = (List<Camera>) objectInputStream.readObject();
             AllCamerasStorage.clearAll();
-            AllCamerasStorage.allCameras = cameras;
+            AllCamerasStorage.allCameras.addAll(cameras);
             fileLogger.info("Камеры были считаны с сохранения.");
         } catch (IOException | ClassNotFoundException e) {
             fileLogger.error("Не удалось прочитать камеры с сохранения, возьмём с базы");

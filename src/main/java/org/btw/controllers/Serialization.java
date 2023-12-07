@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 public class Serialization implements Runnable {
     private static final Logger fileLogger = Logger.getLogger("file");
 
-    private static void makeSave() {
+    private void makeSave() {
         try (FileOutputStream outputStream = new FileOutputStream("save.ser");
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream)
         ) {

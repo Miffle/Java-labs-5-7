@@ -14,13 +14,13 @@ import static org.btw.elemetns.Table.cameraTableView;
 
 public class MainWindow {
     public MainWindow(Stage stage) {
-        new Thread(Deserialization::new).start();
+        new Thread(new Deserialization()).start();
         HBox box = new HBox(tableViewCreate());
         box.getChildren().add(MainWindowController.allMainWindowButtons());
         Group group = new Group(box);
         Scene scene = new Scene(group);
         createStage(stage, scene);
-        new Thread(Serialization::new).start();
+        stage.setOnCloseRequest(e->new Thread(new Serialization()).start());
     }
 
     private static void createStage(Stage stage, Scene scene) {
